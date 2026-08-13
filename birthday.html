@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎉 Happy 20th Birthday Yasser! 🕷️👊</title>
+    <title>Happy Birthday Yasser! 🎉 20 Years Old 🕷️👊</title>
     <style>
         * {
             margin: 0;
@@ -29,13 +29,60 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         }
 
+        .background-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('top website pic jojo (1).jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.45;
+            animation: bgCycle1 15s ease-in-out infinite;
+        }
+
+        .background-animation::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('top website pic jojo (2).jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: bgCycle2 15s ease-in-out infinite;
+        }
+
+        /* Using ::before and a pseudo-element hack for third image with background-blend-mode */
         .star {
             position: absolute;
             background: white;
             border-radius: 50%;
             animation: twinkle 3s infinite;
+        }
+
+        @keyframes bgCycle1 {
+            0%, 100% { opacity: 0.45; }
+            33% { opacity: 0; }
+            66% { opacity: 0; }
+        }
+
+        @keyframes bgCycle2 {
+            0%, 33% { opacity: 0; }
+            33%, 66% { opacity: 0.45; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes bgCycle3 {
+            0%, 66% { opacity: 0; }
+            66%, 100% { opacity: 0.45; }
         }
 
         @keyframes twinkle {
@@ -384,6 +431,218 @@
             .birthday-pics { grid-template-columns: 1fr; }
         }
 
+        /* Slideshow Styles */
+        .slideshow-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 30px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+            border: 8px solid #d4af37;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            animation: fadeInSlide 1s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .slide-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            border: 2px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+
+        .slide-dot.active {
+            background: #d4af37;
+            transform: scale(1.3);
+        }
+
+        .slide-dot:hover {
+            background: #ff6b00;
+        }
+
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #d4af37;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .slide-arrow:hover {
+            background: rgba(255, 107, 0, 0.8);
+            color: white;
+        }
+
+        .slide-arrow.prev {
+            left: 10px;
+        }
+
+        .slide-arrow.next {
+            right: 10px;
+        }
+
+        /* Audio player styling */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b00, #d4af37);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .audio-player:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.5);
+        }
+
+        .audio-player.playing {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .audio-icon {
+            font-size: 2em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .audio-label {
+            position: absolute;
+            bottom: 100px;
+            right: 20px;
+            background: #1a1a2e;
+            color: #d4af37;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            border: 2px solid #ff6b00;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .audio-player:hover .audio-label {
+            opacity: 1;
+        }
+
+        /* Play Prompt */
+        .play-prompt {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff6b00, #d4af37);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 999;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: slideIn 0.5s ease-out;
+            border: 4px solid #d4af37;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .play-prompt h3 {
+            color: #000;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .play-prompt-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .play-prompt-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .play-prompt-button:active {
+            transform: translateY(0);
+        }
+
+        .play-prompt.hidden {
+            display: none;
+        }
+
         /* Particle effect */
         .particle {
             position: absolute;
@@ -653,6 +912,18 @@
     <!-- Background animation -->
     <div class="background-animation">
         <div id="stars"></div>
+        <div class="background-layer" id="spidermanBg" style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('spider man.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: bgCycle3 15s ease-in-out infinite;
+        "></div>
         <svg class="spider-web" viewBox="0 0 200 200">
             <!-- Simple spider web pattern -->
             <line x1="100" y1="0" x2="100" y2="200" stroke="white" stroke-width="1"/>
@@ -679,9 +950,48 @@
         <!-- Age Badge -->
         <div class="age-badge">20</div>
 
-        <!-- Picture Frame -->
-        <div class="picture-frame">
-            <img src="his pic.png" alt="Yasser's Birthday Photo" />
+        <!-- Picture Frame / Slideshow -->
+        <div class="slideshow-container" id="slideshowContainer">
+            <div class="slide active">
+                <img src="his pic.png" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="randompicofus.png" alt="Yasser and Friends" />
+            </div>
+            <div class="slide">
+                <img src="yasser (1).jpeg" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="yasser (2).jpeg" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="yasser (3).jpeg" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="yasser (4).jpeg" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="yasser (5).jpeg" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="yasser (6).jpeg" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="yasser (7).jpeg" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="yasser (8).jpeg" alt="Yasser" />
+            </div>
+            <div class="slide">
+                <img src="yasser (9).jpeg" alt="Yasser" />
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="slide-arrow prev" onclick="changeSlide(-1)">❮</button>
+            <button class="slide-arrow next" onclick="changeSlide(1)">❯</button>
+
+            <!-- Slide Indicators -->
+            <div class="slide-nav" id="slideNav"></div>
         </div>
 
         <!-- Button Group -->
@@ -821,14 +1131,126 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Audio Player -->
+    <audio id="birthdayAudio" loop>
+        <source src="07. Jotaro's Theme (From _JoJo's Bizarre Adventure - Stardust Crusaders _).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Play Music Prompt -->
+    <div class="play-prompt" id="playPrompt">
+        <h3>🎵 Click to Play Music 🎵</h3>
+        <button class="play-prompt-button" onclick="startMusic()">▶️ Play Jotaro's Theme</button>
+    </div>
+
+    <div class="audio-player" id="audioPlayer" onclick="toggleAudio()">
+        <div class="audio-icon" id="audioIcon">🎵</div>
+        <div class="audio-label">Jotaro's Theme</div>
+    </div>
         <p>🎂 Made with ❤️ for Yasser's 20th Birthday 🎂</p>
         <p>Inspired by JoJo's Bizarre Adventure & Spider-Man</p>
         <p>May your birthday be as epic as your favorite anime and superhero! 🌟</p>
     </footer>
 
     <script>
+        // Slideshow Variables
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Initialize slideshow
+        function initSlideshow() {
+            createSlideDots();
+            showSlide(0);
+            // Auto advance slides every 5 seconds
+            setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        // Create slide indicator dots
+        function createSlideDots() {
+            const slideNav = document.getElementById('slideNav');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => showSlide(i);
+                slideNav.appendChild(dot);
+            }
+        }
+
+        // Show specific slide
+        function showSlide(n) {
+            const dots = document.querySelectorAll('.slide-dot');
+            
+            // Wrap around
+            if (n >= totalSlides) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = n;
+            }
+
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active class to current slide and dot
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Change slide
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Audio Controls
+        const audio = document.getElementById('birthdayAudio');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioIcon = document.getElementById('audioIcon');
+        const playPrompt = document.getElementById('playPrompt');
+        let isPlaying = false;
+
+        // Start music function (called by play button)
+        function startMusic() {
+            audio.play().then(() => {
+                isPlaying = true;
+                audioIcon.textContent = '🎵';
+                audioPlayer.classList.add('playing');
+                playPrompt.classList.add('hidden');
+            }).catch(e => {
+                console.log('Playback error:', e);
+            });
+        }
+
+        // Toggle audio play/pause
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                audioIcon.textContent = '🔇';
+                audioPlayer.classList.remove('playing');
+            } else {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    audioIcon.textContent = '🎵';
+                    audioPlayer.classList.add('playing');
+                }).catch(e => {
+                    console.log('Playback error:', e);
+                });
+            }
+        }
+
+        // Update audio player state when audio ends and restarts
+        audio.addEventListener('ended', () => {
+            if (isPlaying) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        });
+
         // Create stars in background
         function createStars() {
             const starsContainer = document.getElementById('stars');
@@ -981,10 +1403,16 @@
             createStars();
             updateCountdown();
             setInterval(updateCountdown, 1000);
+            initSlideshow();
             
             // Splash screen animation
             setTimeout(() => {
                 document.getElementById('splashScreen').classList.add('hidden');
+            }, 4000);
+
+            // Show play prompt after splash screen
+            setTimeout(() => {
+                playPrompt.classList.remove('hidden');
             }, 4000);
         });
 
