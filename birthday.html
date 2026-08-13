@@ -1206,11 +1206,8 @@
             showSlide(currentSlide + direction);
         }
 
-        // Audio Controls
-        const audio = document.getElementById('birthdayAudio');
-        const audioPlayer = document.getElementById('audioPlayer');
-        const audioIcon = document.getElementById('audioIcon');
-        const playPrompt = document.getElementById('playPrompt');
+        // Audio Controls - declare globally but don't initialize until DOM loads
+        let audio, audioPlayer, audioIcon, playPrompt;
         let isPlaying = false;
 
         // Start music function (called by play button)
@@ -1244,12 +1241,14 @@
         }
 
         // Update audio player state when audio ends and restarts
-        audio.addEventListener('ended', () => {
-            if (isPlaying) {
-                audio.currentTime = 0;
-                audio.play();
-            }
-        });
+        function setupAudioListener() {
+            audio.addEventListener('ended', () => {
+                if (isPlaying) {
+                    audio.currentTime = 0;
+                    audio.play();
+                }
+            });
+        }
 
         // Create stars in background
         function createStars() {
@@ -1400,6 +1399,15 @@
 
         // Initialize
         window.addEventListener('load', () => {
+            // Initialize audio elements now that DOM is loaded
+            audio = document.getElementById('birthdayAudio');
+            audioPlayer = document.getElementById('audioPlayer');
+            audioIcon = document.getElementById('audioIcon');
+            playPrompt = document.getElementById('playPrompt');
+            
+            // Setup audio listener
+            setupAudioListener();
+            
             createStars();
             updateCountdown();
             setInterval(updateCountdown, 1000);
